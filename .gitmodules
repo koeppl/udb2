@@ -1,0 +1,9 @@
+[submodule "separate_chaining/external"]
+	path = separate_chaining/external
+	url = https://github.com/koeppl/separate_chaining
+[submodule "_external/malloc_count"]
+	path = _external/malloc_count
+	url = https://github.com/bingmann/malloc_count
+[submodule "_external/bit_span"]
+	path = _external/bit_span
+	url = https://github.com/tudocomp/bit_span.git

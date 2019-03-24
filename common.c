@@ -4,6 +4,7 @@
 #include <stdint.h>
 #include <sys/time.h>
 #include <sys/resource.h>
+#include "_external/malloc_count/malloc_count.h"
 
 static inline uint32_t hash32(uint32_t key)
 {
@@ -79,7 +80,7 @@ int main(int argc, char *argv[])
 		test_int(n, x0);
 		t = cputime() - t;
 		mem = (peakrss() - m0) / 1024.0 / 1024.0;
-		printf("%d\t%d\t%.3f\t%.3f\t%.4f\t%.4f\n", i, n, t, mem, t * 1e6 / n, mem * 1e6 / n);
+		printf("%d\t%d\t%.3f\t%.3f\t%.4f\t%.4f\t%zu\n", i, n, t, mem, t * 1e6 / n, mem * 1e6 / n, malloc_count_peak() );
 	}
 	return 0;
 }
