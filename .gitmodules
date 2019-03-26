@@ -8,5 +8,8 @@
 	path = _external/bit_span
 	url = https://github.com/tudocomp/bit_span.git
 [submodule "rigtorp"]
-	path = rigtorp
+	path = _external/rigtorp
+	url = https://github.com/rigtorp/HashMap
+[submodule "_external/rigtorp"]
+	path = _external/rigtorp
 	url = https://github.com/rigtorp/HashMap
