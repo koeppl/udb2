@@ -1,10 +1,12 @@
-all:run-test run-test-1
+all:run-test-dense run-test
 
-run-test:test.cpp ../common.c
-	$(CXX) -O3 -Wall -I. $< -o $@
+include ../makefile_malloc_count
 
-run-test-1:test-1.cpp ../common.c
-	$(CXX) -O3 -Wall -I. $< -o $@
+run-test-dense:test-dense.cpp ../common.c ${MALLOC_COUNT_OBJ}
+	$(CXX) -O3 -Wall -I. $< ${MALLOC_COUNT_LINK} -o $@
+
+run-test:test.cpp ../common.c ${MALLOC_COUNT_OBJ}
+	$(CXX) -O3 -Wall -I. $< ${MALLOC_COUNT_LINK} -o $@
 
 clean:
 	rm -f run-test*

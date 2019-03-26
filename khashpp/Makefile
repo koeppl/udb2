@@ -1,7 +1,9 @@
 all:run-test
 
-run-test:test.cpp ../common.c khash.hpp
-	$(CXX) -O3 -Wall $< -o $@
+include ../makefile_malloc_count
+
+run-test:test.cpp ../common.c ${MALLOC_COUNT_OBJ} khash.hpp
+	$(CXX) -O3 -Wall $< ${MALLOC_COUNT_LINK} -o $@
 
 clean:
 	rm -f run-test*

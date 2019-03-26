@@ -1,5 +1,6 @@
 
 
+MALLOC_COUNT_FLAGS=-DNDEBUG
 MALLOC_COUNT_OBJ=malloc_count.o
 MALLOC_COUNT_C=../_external/malloc_count/malloc_count.c
 MALLOC_COUNT_LINK=${MALLOC_COUNT_OBJ} -ldl

@@ -1,7 +1,9 @@
 all:run-test
 
-run-test:test.c ../common.c stb.h
-	$(CC) -O2 -Wall $< -o $@ -lm
+include ../makefile_malloc_count
+
+run-test:test.c ../common.c ${MALLOC_COUNT_OBJ} stb.h
+	$(CC) -O2 -Wall $< ${MALLOC_COUNT_LINK} -o $@ -lm
 
 clean:
 	rm -f run-test*

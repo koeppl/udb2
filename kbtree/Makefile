@@ -1,5 +1,9 @@
-run-test:test.c ../common.c kbtree.h
-	$(CC) -O2 -Wall $< -o $@
+all:run-test
+
+include ../makefile_malloc_count
+
+run-test:test.c ../common.c ${MALLOC_COUNT_OBJ} kbtree.h
+	$(CC) -O2 -Wall $< ${MALLOC_COUNT_LINK} -o $@
 
 clean:
 	rm -f run-test*

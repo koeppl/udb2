@@ -1,10 +1,12 @@
 all:run-test run-test-1
 
-run-test:test.c ../common.c
-	$(CC) -O2 -Wall $< tommy.c -o $@
+include ../makefile_malloc_count
 
-run-test-1:test-1.c ../common.c
-	$(CC) -O2 -Wall $< tommy.c -o $@
+run-test:test.c ../common.c ${MALLOC_COUNT_OBJ}
+	$(CC) -O2 -Wall $< ${MALLOC_COUNT_LINK} tommy.c -o $@
+
+run-test-1:test-1.c ../common.c ${MALLOC_COUNT_OBJ}
+	$(CC) -O2 -Wall $< ${MALLOC_COUNT_LINK} tommy.c -o $@
 
 clean:
 	rm -f run-test*

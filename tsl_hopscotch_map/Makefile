@@ -1,5 +1,9 @@
-run-test:test.cpp ../common.c
-	$(CXX) -O3 -Wall -std=c++11 $< -o $@
+all:run-test
+
+include ../makefile_malloc_count
+
+run-test:test.cpp ../common.c ${MALLOC_COUNT_OBJ}
+	$(CXX) -O3 -Wall -std=c++11 $< ${MALLOC_COUNT_LINK} -o $@
 
 clean:
 	rm -f run-test*

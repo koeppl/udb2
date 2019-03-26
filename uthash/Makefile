@@ -1,7 +1,9 @@
 all:run-test
 
-run-test:test.c ../common.c uthash.h 
-	$(CC) -O2 -Wall $<  ../_external/malloc_count/malloc_count.c -o $@ -ldl
+include ../makefile_malloc_count
+
+run-test:test.c ../common.c ${MALLOC_COUNT_OBJ} uthash.h 
+	$(CC) -O2 -Wall $< ${MALLOC_COUNT_LINK} -o $@ 
 
 clean:
 	rm -f run-test*

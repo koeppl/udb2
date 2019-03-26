@@ -1,13 +1,16 @@
-all:run-test run-test-1
+all:run-test-compact run-test-plain run-test-cht
 
 include ../makefile_malloc_count
 
 
-run-test: test.cpp ../common.c ${MALLOC_COUNT_OBJ}
-	$(CXX) -std=gnu++17 -I../_external/bit_span/include -ldl -O3 -Wall $< ${MALLOC_COUNT_LINK} -o $@
+run-test-compact: test-compact.cpp ../common.c ${MALLOC_COUNT_OBJ}
+	$(CXX) ${MALLOC_COUNT_FLAGS} -std=gnu++17 -I../_external/bit_span/include -ldl -O3 -march=native -mtune=native -Wall $< ${MALLOC_COUNT_LINK}  -o $@
 
-run-test-1: test-1.cpp ../common.c ${MALLOC_COUNT_OBJ}
-	$(CXX) -std=gnu++17 -I../_external/bit_span/include -ldl -O3 -Wall $< ${MALLOC_COUNT_LINK} -o $@
+run-test-plain: test-plain.cpp ../common.c ${MALLOC_COUNT_OBJ}
+	$(CXX) ${MALLOC_COUNT_FLAGS} -std=gnu++17 -I../_external/bit_span/include -ldl -O3 -march=native -mtune=native -Wall $< ${MALLOC_COUNT_LINK}  -o $@
+
+run-test-cht: test-cht.cpp ../common.c ${MALLOC_COUNT_OBJ}
+	$(CXX) ${MALLOC_COUNT_FLAGS} -std=gnu++17 -I../_external/bit_span/include -ldl -O3 -march=native -mtune=native -Wall $< ${MALLOC_COUNT_LINK}  -o $@
 
 
 clean:
