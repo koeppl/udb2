@@ -46,5 +46,5 @@ The used hash tables are:
 
 The [companion blog post][blog] gives more background about this benchmark.
 
-[rst]: https://github.com/attractivechaos/udb2/tree/master/__logs
+[rst]: https://github.com/koeppl/udb2/tree/master/__logs
 [blog]: https://attractivechaos.wordpress.com/2018/01/13/revisiting-hash-table-performance/
