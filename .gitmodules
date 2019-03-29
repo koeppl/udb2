@@ -13,3 +13,6 @@
 [submodule "_external/rigtorp"]
 	path = _external/rigtorp
 	url = https://github.com/rigtorp/HashMap
+[submodule "_external/compact_sparse_hash"]
+	path = _external/compact_sparse_hash
+	url = https://github.com/tudocomp/compact_sparse_hash
