@@ -1,16 +1,17 @@
 ## Getting Started
 ```sh
-git clone https://github.com/attractivechaos/udb2
+git clone https://github.com/koeppl/udb2
 cd udb2
-# compile directories that include the library code; C++11/14 required for some libraries
+# compile directories that include the library code; C++17 required for some libraries
 make
 # run benchmarks for compiled programs
-ls */run-test*|grep -v log|xargs -i echo '{} > {}.log 2>&1'|sh
+./run.sh
 ```
 
 ## Introduction
 
-This repo implements a *micro*-benchmark to evaluate the performance of various
+This repo is derived from [attractivechaos/udb2](https://github.com/attractivechaos/udb2), which
+implements a *micro*-benchmark to evaluate the performance of various
 hashtable libraries in C/C++. Each library is given *N* 32-bit integers with
 ~25% of them are distinct. The task is to find the occurrence of each distinct
 integer with a dictionary. To show the effect of rehashing, the benchmark
@@ -27,19 +28,23 @@ yourself.
 
 ## Results
 
-Complete results can be found in the [\_\_logs][rst] directory. The following
-figure shows the memory vs runtime when the benchmark is run on "n1-standard-1"
-machine from the Google Cloud:
+Complete results can be found in the [\_logs][rst] directory. 
+The following figure shows the memory vs runtime when the benchmark is run on 
+a Ubuntu Linux 18.04 machine equipped with an Intel Xeon CPU E3-1271 v3 clocked at 3.60GHz 
+and with 32 GiB of RAM:
 
-![](https://raw.githubusercontent.com/attractivechaos/udb2/master/__logs/180929-gcloud-a.png)
+![](_logs/udb2.svg)
 
-It is worth noting that the results vary with machines. The following figure
-was derived from runs on a Linux server with a much larger cache (CPU: Xeon
-E5-2683 v3, 2.0GHz, 35MB cache; memory: 640GB; gcc: v5.4.0):
+The used hash tables are:
+ * [spp](https://github.com/greg7mdp/sparsepp); Gregory Popovitch's Sparsepp
+ * [google](https://github.com/sparsehash/sparsehash): Google's sparse hash table
+ * [tsl](https://github.com/Tessil/sparse-map): Tessil's sparse map
+ * layeredS, clearyS: [sparse compact hash tables](https://github.com/tudocomp/compact_sparse_hash) from the tudocomp project
+ * plainI, chtI, chmapI: [separate chaining hash tables](https://github.com/koeppl/separate_chaining)
 
-![](https://raw.githubusercontent.com/attractivechaos/udb2/master/__logs/180929-server-a.png)
 
-The [companion blog post][blog] gives more context about this benchmark.
+
+The [companion blog post][blog] gives more background about this benchmark.
 
 [rst]: https://github.com/attractivechaos/udb2/tree/master/__logs
 [blog]: https://attractivechaos.wordpress.com/2018/01/13/revisiting-hash-table-performance/
